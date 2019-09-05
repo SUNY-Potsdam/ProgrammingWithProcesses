@@ -1,0 +1,17 @@
+#+STARTUP: showall
+#+TITLE: Programming with Processes - exec*(), fork(), wait()
+#+SUBTITLE: CIS 310: Operating Systems
+#+AUTHOR: Brian C. Ladd
+#+DATE: Fall 2019
+
+* Examples of using =exec=, =fork=, and =std::filesystem=
+** =forkandwait/=
+*** Two versions of calling fork.
+    - =letUsFork= :: has parent and child use buffered output and each prints a counter. Sleep is done after some number of loops so that the processes interleave.
+    - =mixItUp= :: parent and child print and flush one character at a time an then sleep a random amount of time. Parent prints CAPITAL and child lowercase letters.
+** =exec/=
+*** Two executables, =counterA= and =counterB= that are mutually recursive. They are identical but for name
+    - =counter?= :: takes a starting value and loop count on the command line (sets sane defaults), Increments the counter, printing each new value to stdout. Then executes the companion program with updated starting value.
+** =redirect/=
+*** Demonstrates how to close and reopen stdin in a child process; hardcoded path used.
+    - =redirect= :: Note the use of =dup2=, a low-level call that duplicates a file handle. The program forks, redirects input from the source code for the executable, and then executes the standard =sort= utility.
